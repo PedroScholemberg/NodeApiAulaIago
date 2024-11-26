@@ -22,15 +22,24 @@ app.get('/pessoa/id/:id', async (req, res) => {
     }
 });
 
-app.get('/pessoa/nomeouid/:id:nome', async(req, res) => {
- const {id, nome} = req.params;
- try{
-
- }catch{
-    res.status()
- }
-});
+app.get('/pessoa/nomeouid', async (req, res) => {
+    const { id, nome } = req.query;
+  
+    try {
+      if (id) {
+        // Process the request using the 'id' parameter
+        res.status(200).json({ message: `Searched by ID: ${id}` });
+      } else if (nome) {
+        // Process the request using the 'nome' parameter
+        res.status(200).json({ message: `Searched by Nome: ${nome}` });
+      } else {
+        res.status(400).json({ error: 'Please provide either id or nome' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  })
 
 app.listen(PORT, () =>{
-    console.log(`porta: ${PORT}`)
+    console.log(`porta: ${PORT}`);
 });
