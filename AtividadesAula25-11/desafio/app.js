@@ -50,15 +50,23 @@ app.post('/usuarios', (req,res)=>{
     }
 });
 
-app.delete('/usuarios', (req,res)=>{
+app.delete('/usuarios/:id', (req,res)=>{
     try {
-        const {nome,id,data_criacao} = req.body;
-        connection.query('DELETE USUARIO WHERE id = ?', [id,nome,data_criacao])
+        console.log("a");
+        const {id} = req.body;
+        console.log("b");
+        connection.query('DELETE USUARIO WHERE id = ?', [id], (erro, resposta) =>{
+            console.log("c");
+            if(erro){
+                return res.status(500).json({error:erro});
+            }
+            res.status(200).json({message: 'boa boa'});
+            console.log("d");
+        });
     } catch (error) {
-        
+        res.status(200).json({error: error})
     }
 });
-
 
 app.listen(PORT, () => {
     console.log('conectado na porta ' + PORT);
