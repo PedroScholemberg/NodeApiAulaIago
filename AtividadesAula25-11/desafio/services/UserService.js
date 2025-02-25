@@ -1,12 +1,13 @@
-const usuarioRepository = require('../repositories/usuarioRepository');
+const db = require('../Config/db');
 
 const getUsuarios = async () => {
-    return await usuarioRepository.getAllUsuarios();
+    const [rows] = await db.query('SELECT * FROM usuarios');
+    return rows;
 };
 
 const addUsuario = async (nome) => {
-    return await usuarioRepository.createUsuario(nome);
+    const [result] = await db.query('INSERT INTO usuarios (nome) VALUES (?)', [nome]);
+    return { id: result.insertId, nome };
 };
 
-module.exports = { getUsuarios, addUsuario };
-
+module.exports = { getUsuarios, addUsuario }; // Está exportando "addUsuario"

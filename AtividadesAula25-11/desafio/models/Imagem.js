@@ -1,4 +1,4 @@
-export default class Imagem {
+class Imagem {
     constructor(id, nome, data_criacao, titulo) {
         this.id = id;
         this.nome = nome;
@@ -6,3 +6,5 @@ export default class Imagem {
         this.titulo = titulo;
     }
 }
+
+module.exports = Imagem;

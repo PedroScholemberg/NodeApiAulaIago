@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 
 pool.getConnection((err, connection) => {
     if (err) {
-        console.error('Erro ao conectar ao MySQL:', err);
+        console.error('Erro ao conectar ao MySQL:', err.message); // Melhor debug
         return;
     }
     console.log('Conectado ao MySQL');

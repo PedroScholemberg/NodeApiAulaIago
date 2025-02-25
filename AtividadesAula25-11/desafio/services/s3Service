@@ -1,0 +1,7 @@
+const repository = require("../repositories/s3Repository");
+
+const uploadFile = async (filePath, bucketName, keyName) => {
+  return await repository.uploadFile(filePath, bucketName, keyName);
+};
+
+module.exports = { uploadFile };
