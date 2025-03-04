@@ -3,8 +3,8 @@ const app = express();
 const routes = require('./Routes/router');
 const { uploadFile, downloadFile } = require('./services/s3Service');
 
-app.use(express.json()); // <- ESSA LINHA É OBRIGATÓRIA PARA FUNCIONAR O POST!
+app.use(express.json());
 
-app.use('/api', routes);
+app.use(routes);
 
-app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
+app.listen(8090, () => console.log('Servidor rodando na porta 8090'));

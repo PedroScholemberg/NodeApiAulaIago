@@ -1,7 +1,34 @@
-const repository = require("../repositories/s3Repository");
+const AWS = require('aws-sdk');
+const fs = require('fs');
 
-const uploadFile = async (filePath, bucketName, keyName) => {
-  return await repository.uploadFile(filePath, bucketName, keyName);
+
+// configurações dos3
+const s3 = new AWS.S3({
+    accessKeyId: 'AKIA5RRHCKYZTUINUDUY',
+    secretAccessKey: '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',
+    region: 'us-east-1'
+});
+
+// parametros de entrada upload
+const uploadFile = async (filePath, bucketName, key) => {
+    const fileStream = fs.createReadStream(filePath);
+
+    const params = {
+        Bucket: bucketName,
+        Key: key,
+        Body: fileStream
+    };
+
+    return s3.upload(params).promise();
 };
 
-module.exports = { uploadFile };
+// parametros de entrada download
+const downloadFile = async (filePath) => {
+    const localPath = path.join(__dirname, 'Assets', path.basename(filePath));
+    const fileStream = fs.createWriteStream(localPath);
+
+    // busca n s3 pelo nome, pega os dados do arquivo e escreve os dados recebidos como filestream, e quando termina mostra a mensagem
+    s3.getObject({ Bucket: "bucketmi75", Key: filePath }).createReadStream().pipe(fileStream).on('finish', () => console.log('Arquivo baixado:', localPath));
+};
+
+module.exports = { uploadFile, downloadFile };

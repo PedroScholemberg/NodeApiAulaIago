@@ -31,7 +31,6 @@ const uploadFile = (filePath, bucketName, keyName) => {
 
 uploadFile('./caminho/do/seu/arquivo.txt', 'nome-do-seu-bucket', 'arquivo-no-s3.txt');
 
-
 const downloadFile = (bucketName, keyName, downloadPath) => {
     const params = {
       Bucket: bucketName,

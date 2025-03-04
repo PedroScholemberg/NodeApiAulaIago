@@ -10,4 +10,4 @@ const addUsuario = async (nome) => {
     return { id: result.insertId, nome };
 };
 
-module.exports = { getUsuarios, addUsuario }; // Está exportando "addUsuario"
+module.exports = { getUsuarios, addUsuario };
