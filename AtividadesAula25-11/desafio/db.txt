@@ -1,17 +1,24 @@
+set sql_safe_updates = 0;
+
 CREATE DATABASE APICRUD;
 USE APICRUD;
 
-CREATE TABLE users(
-id INT(5) NOT NULL primary KEY,
-nome VARCHAR(45),
-data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE usuarios (
+    id INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    nome VARCHAR(45) NOT NULL,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE images(
-id INT(5) NOT NULL primary KEY,
-referencia VARCHAR(45),
-data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-titulo VARCHAR(45)
+CREATE TABLE imagens (
+    id INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    referencia VARCHAR(45),
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    titulo VARCHAR(45)
 );
 
-select * from users;
+-- Verificar se há usuários cadastrados
+SELECT * FROM usuarios;
+
+delete from imagens;
+
+drop database APICRUD;
