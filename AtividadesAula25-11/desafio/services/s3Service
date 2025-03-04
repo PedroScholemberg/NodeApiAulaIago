@@ -4,9 +4,9 @@ const fs = require('fs');
 
 // configurações dos3
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIA5RRHCKYZTUINUDUY',
-    secretAccessKey: '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',
-    region: 'us-east-1'
+    accessKeyId: '',
+    secretAccessKey: '',
+    region: ''
 });
 
 // parametros de entrada upload
